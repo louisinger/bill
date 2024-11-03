@@ -243,8 +243,8 @@ func generateBillPDF(bill Bill, outputPath string) error {
 	pdf.SetFillColor(255, 255, 255)       // White background
 	pdf.Rect(50, pdf.GetY(), 140, 8, "F") // White rectangle behind address
 	pdf.SetX(50)
-	pdf.SetFont("Courier", "", 11) // Slightly larger monospace font
-	pdf.SetTextColor(0, 0, 0)      // Black text for better contrast
+	pdf.SetFont("Courier", "", 8) // Reduced from 11 to 8
+	pdf.SetTextColor(0, 0, 0)     // Black text for better contrast
 	pdf.CellFormat(140, 8, "  "+bill.BitcoinAddress, "", 0, "", false, 0, "")
 
 	pdf.Ln(10)

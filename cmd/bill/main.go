@@ -6,13 +6,22 @@ import (
 	"os"
 
 	"github.com/louisinger/bill/pkg/bill"
+	"github.com/louisinger/bill/pkg/ui"
 	"github.com/urfave/cli/v2"
 )
+
+const version = "1.0.0"
 
 func main() {
 	app := &cli.App{
 		Name:  "bill",
 		Usage: "Generate PDF invoices with Bitcoin payment support",
+		Action: func(c *cli.Context) error {
+			// Default action: launch GUI
+			billApp := ui.NewBillApp()
+			billApp.Run()
+			return nil
+		},
 		Commands: []*cli.Command{
 			{
 				Name:    "generate",
@@ -61,7 +70,7 @@ func main() {
 				Aliases: []string{"v"},
 				Usage:   "Print the version",
 				Action: func(c *cli.Context) error {
-					fmt.Println("bill version 1.0.0")
+					fmt.Printf("bill version %s\n", version)
 					return nil
 				},
 			},

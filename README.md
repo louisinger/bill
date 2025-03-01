@@ -1,75 +1,90 @@
-# bill
+# Bill - Invoice Generator
 
-A command-line tool to generate professional PDF invoices with Bitcoin payment support.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+A modern, user-friendly invoice generator with Bitcoin payment support.
 
 ## Features
 
-- Interactive CLI for invoice generation
-- Template support for recurring information
-- Professional PDF output with:
-  - Company and client details
-  - Itemized billing
-  - Bitcoin payment section with QR code
-- EUR currency support
-- Clean and modern design
+- Create professional invoices with a modern UI
+- Add multiple items with automatic total calculation
+- Support for Bitcoin payments
+- Save and load default values
+- Export to PDF
+- Cross-platform support (macOS, Linux, Windows)
 
 ## Installation
 
+### Prerequisites
+
+- Go 1.21 or later
+- Git
+
 ### From Source
 
-Requirements:
-- Go 1.21 or later
-- make
-- git
-
-### Build from Source
-
+1. Clone the repository:
 ```bash
-make build
+git clone https://github.com/louisinger/bill.git
+cd bill
 ```
 
-### Install
+2. Install the application:
+```bash
+go install ./cmd/bill
+```
+
+The `bill` binary will be installed in your `$GOPATH/bin` directory. Make sure this directory is in your system's PATH.
+
+### Using Go Install (directly from GitHub)
 
 ```bash
-make install
+go install github.com/louisinger/bill/cmd/bill@latest
 ```
 
 ## Usage
 
+### GUI Mode
+
+Simply run:
 ```bash
-bill --help
+bill
 ```
 
-### Template
+### CLI Mode
 
-The template is a JSON file that contains recurring information of the invoice.
-
-```json
-{
-  "company_name": "My Company",
-  "address": "123 Business Street\nCity, 12345\nCountry",
-  "vat_number": "GB123456789",
-  "to_company_name": "Client Company Ltd",
-  "to_address": "456 Client Street\nClient City, 54321\nClient Country",
-  "to_vat_number": "FR987654321",
-  "items": [
-      {
-          "description": "ask chatGPT",
-          "quantity": 1,
-          "unit_price": 100000.00
-      }
-  ]
-}
+Generate an invoice using command line:
+```bash
+bill generate -o invoice.pdf
 ```
 
-Then, use the template to avoid repeating yourself.
-
+Use a template:
 ```bash
-bill --template template.json
+bill generate -t template.json -o invoice.pdf
+```
+
+Show version:
+```bash
+bill version
+```
+
+## Development
+
+### Building from Source
+
+1. Clone the repository:
+```bash
+git clone https://github.com/louisinger/bill.git
+cd bill
+```
+
+2. Build the application:
+```bash
+go build -o bill ./cmd/bill
+```
+
+3. Run the application:
+```bash
+./bill
 ```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see LICENSE file for details
